@@ -29,7 +29,7 @@ clean_lib() {
 # Do this twice so it picks up libs that got pulled in.
 for i in 1 2 3
 do
-    for fn in "$dest/lib/"*.dylib "$dest/lib/couchdb/bin/couchjs" \
+    for fn in "$dest/lib/"*.dylib \
 	"$dest/lib/couchdb/erlang/lib/"couch-*/priv/lib/couch_icu_driver.so \
     "$dest/lib/erlang/lib/crypto-2.2/priv/lib/"crypto.so
     do
@@ -38,24 +38,19 @@ do
     done
 done
 
-absolutize() {
-        # change absolute paths to dynamic absolute paths
-        echo absolutifying $1
-        perl -pi -e "s@$builddir@\`pwd\`/@" "$dest/$1"
-}
+cp "$dest/lib/couchdb/bin/couchjs" "$dest/bin/couchjs"
+
 
 relativize() {
         # change absolute paths to dynamic absolute paths
         echo relativizing $1
-        perl -pi -e "s@$builddir@@" "$dest/$1"
+        perl -pi -e "s@$HOME/build/@@g" "$dest/$1"
 }
 
-for f in bin/erl bin/js-config bin/icu-config bin/couchdb bin/couchjs
+for f in bin/erl bin/js-config bin/icu-config bin/couchdb bin/couchjs etc/couchdb/default.ini
 do
-    absolutize $f
+    relativize $f
 done
-
-relativize etc/couchdb/default.ini
 
 # Clean up unnecessary items
 
