@@ -295,7 +295,7 @@
 				DAADFB27133DA75F00B282D6 /* var */,
 			);
 			name = "Core Files";
-			path = "../build-couchdb-1.2.1/build";
+			path = ../../../build;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
