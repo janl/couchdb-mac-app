@@ -6,13 +6,13 @@ builddir="${instdir}build/"
 dest="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchdbx-core"
 
 clean_lib() {
-    echo "Cleaning $1"
+#    echo "Cleaning $1"
     while read something
     do
         base=${something##*/}
 
         if [ $base != "LDAP" ] && [ $base != "Cocoa" ] && [ $base != "CoreFoundation" ] && [ $base != "ExceptionHandling" ]; then
-            echo "  Fixing $something -> lib/$base"
+#echo "  Fixing $something -> lib/$base"
             test -f "$dest/lib/$base" || cp "$something" "$dest/lib/$base"
             chmod 755 "$dest/lib/$base"
             install_name_tool -change "$something" "lib/$base" "$1"

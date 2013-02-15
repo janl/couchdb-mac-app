@@ -437,7 +437,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"$PROJECT_NAME.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\nZIPNAME=`echo \"$PROJECT_NAME\" | sed -e s/\\ /-/g`-$V.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ZIPNAME\"\nmd5sum \"$ZIPNAME\" > \"$ZIPNAME.md5\"\nsha1sum \"$ZIPNAME\" > \"$ZIPNAME.sha\"";
+			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"$PROJECT_NAME.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\nZIPNAME=`echo \"$PROJECT_NAME\" | sed -e s/\\ /-/g`-$V.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ZIPNAME\"\n/usr/local/bin/md5sum \"$ZIPNAME\" > \"$ZIPNAME.md5\"\n/usr/local/bin/sha1sum \"$ZIPNAME\" > \"$ZIPNAME.sha\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
