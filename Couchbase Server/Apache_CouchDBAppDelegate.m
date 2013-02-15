@@ -311,14 +311,13 @@
     NSDictionary *env = [NSDictionary dictionaryWithObjectsAndKeys:
                          @"./bin:/bin:/usr/bin", @"PATH",
                          NSHomeDirectory(), @"HOME",
-                         [self finalConfigPath], @"COUCHDB_ADDITIONAL_CONFIG_FILE",
                          nil, nil];
     [task setEnvironment:env];
     
 	[launchPath appendString:@"/bin/couchdb"];
     [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
 	[task setLaunchPath:launchPath];
-	NSArray *args = [[NSArray alloc] initWithObjects:@"-i", nil];
+	NSArray *args = [[NSArray alloc] initWithObjects:@"-i", @"-a", [self finalConfigPath], nil];
 	[task setArguments:args];
 	[task setStandardInput:in];
 	[task setStandardOutput:out];
