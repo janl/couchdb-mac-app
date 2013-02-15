@@ -255,8 +255,8 @@
     dictionary_set(iniDict, "couchdb:uri_file", [uriFile UTF8String]);
     
     dictionary_set(iniDict, "query_servers", NULL);
-    dictionary_set(iniDict, "query_servers:javascript", "bin/couchjs share/couchdb/server/main.js");
-    dictionary_set(iniDict, "query_servers:coffeescript", "bin/couchjs share/couchdb/server/main-coffee.js");
+    dictionary_set(iniDict, "query_servers:javascript", "lib/couchdb/bin/couchjs share/couchdb/server/main.js");
+    dictionary_set(iniDict, "query_servers:coffeescript", "lib/couchdb/bin/couchjs share/couchdb/server/main-coffee.js");
     
     // full log file
     NSString *logDir = [dataDir stringByAppendingString:@"/var/log/couchdb"];
