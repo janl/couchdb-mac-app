@@ -20,7 +20,8 @@ clean_lib() {
     done
 }
 
-cp "$dest/lib/couchdb/bin/couchjs" "$dest/bin/couchjs"
+cp -RL"$dest/lib/couchdb/bin/couchjs" "$dest/bin/couchjs"
+ls -la "$dest/bin/couchjs"
 otool -L "$dest/bin/couchjs"
 
 # The wrong mozjs is installed.  We require homebrew's spidermonkey to
@@ -43,6 +44,7 @@ do
 done
 
 otool -L "$dest/bin/couchjs"
+ls -la "$dest/bin/couchjs"
 
 relativize() {
         # change absolute paths to dynamic absolute paths
