@@ -21,7 +21,7 @@ clean_lib() {
 }
 
 ls -la "$dest/bin/couchjs"
-ln -f -s "$dest/lib/couchdb/bin/couchjs" "$dest/bin/couchjs"
+ln -f -s "../lib/couchdb/bin/couchjs" "$dest/bin/couchjs"
 otool -L "$dest/bin/couchjs"
 
 # The wrong mozjs is installed.  We require homebrew's spidermonkey to
