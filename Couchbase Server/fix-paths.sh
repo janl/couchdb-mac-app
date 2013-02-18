@@ -47,7 +47,7 @@ relativize() {
         perl -pi -e "s@$HOME/build/@@g" "$dest/$1"
 }
 
-for f in bin/erl bin/js-config bin/icu-config bin/couchdb bin/couchjs etc/couchdb/default.ini
+for f in bin/erl bin/js-config bin/icu-config bin/couchdb etc/couchdb/default.ini
 do
     relativize $f
 done
