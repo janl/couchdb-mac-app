@@ -20,7 +20,6 @@ clean_lib() {
     done
 }
 
-cp -RL"$dest/lib/couchdb/bin/couchjs" "$dest/bin/couchjs"
 ls -la "$dest/bin/couchjs"
 otool -L "$dest/bin/couchjs"
 
