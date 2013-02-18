@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3D1DBC6D16D1AD47007374E4 /* couchjs in copy working couchjs */ = {isa = PBXBuildFile; fileRef = 3D1DBC6C16D1AD47007374E4 /* couchjs */; };
 		45759BA915681BA30003334D /* CouchDb-Status-bw.png in Resources */ = {isa = PBXBuildFile; fileRef = 45759BA8156818F20003334D /* CouchDb-Status-bw.png */; };
 		45759BAA15681BA30003334D /* CouchDb-Status.png in Resources */ = {isa = PBXBuildFile; fileRef = 45759BA7156818370003334D /* CouchDb-Status.png */; };
 		45759BAB15681BA30003334D /* CouchDb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 45759BA6156817930003334D /* CouchDb.icns */; };
@@ -71,6 +72,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3D1DBC6B16D1ACC5007374E4 /* copy working couchjs */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "couchdbx-core/bin";
+			dstSubfolderSpec = 7;
+			files = (
+				3D1DBC6D16D1AD47007374E4 /* couchjs in copy working couchjs */,
+			);
+			name = "copy working couchjs";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA3C66F9136BA714007C835A /* Enable Native Query Server */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,6 +125,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D1DBC6C16D1AD47007374E4 /* couchjs */ = {isa = PBXFileReference; lastKnownFileType = file; name = couchjs; path = ../../../build/lib/couchdb/bin/couchjs; sourceTree = "<group>"; };
 		45041425158361AC0040F6FF /* CouchDB Server.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CouchDB Server.entitlements"; sourceTree = SOURCE_ROOT; };
 		45759BA6156817930003334D /* CouchDb.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CouchDb.icns; sourceTree = "<group>"; };
 		45759BA7156818370003334D /* CouchDb-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CouchDb-Status.png"; sourceTree = "<group>"; };
@@ -183,6 +196,7 @@
 		DA1AD328133DA58D00E6A9E1 = {
 			isa = PBXGroup;
 			children = (
+				3D1DBC6C16D1AD47007374E4 /* couchjs */,
 				DAADFB33133DA77500B282D6 /* Core Files */,
 				DA1AD33D133DA58D00E6A9E1 /* CouchDB Server */,
 				DA1AD358133DA58D00E6A9E1 /* CouchDB ServerTests */,
@@ -312,6 +326,7 @@
 				DAADFB34133DA78D00B282D6 /* Fixup Paths */,
 				DAADFB36133DA7E800B282D6 /* Install Proper erl start thing */,
 				DA3C66F9136BA714007C835A /* Enable Native Query Server */,
+				3D1DBC6B16D1ACC5007374E4 /* copy working couchjs */,
 			);
 			buildRules = (
 			);
