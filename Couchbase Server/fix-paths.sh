@@ -42,6 +42,8 @@ do
     done
 done
 
+otool -L "$dest/bin/couchjs"
+
 relativize() {
         # change absolute paths to dynamic absolute paths
         echo relativizing $1
