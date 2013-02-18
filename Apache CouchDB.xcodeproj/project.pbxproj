@@ -113,7 +113,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3D1DBC6C16D1AD47007374E4 /* couchjs */ = {isa = PBXFileReference; lastKnownFileType = text; name = couchjs; path = ../../../build/lib/couchdb/bin/couchjs; sourceTree = "<group>"; };
 		45041425158361AC0040F6FF /* CouchDB Server.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CouchDB Server.entitlements"; sourceTree = SOURCE_ROOT; };
 		45759BA6156817930003334D /* CouchDb.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CouchDb.icns; sourceTree = "<group>"; };
 		45759BA7156818370003334D /* CouchDb-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CouchDb-Status.png"; sourceTree = "<group>"; };
@@ -184,7 +183,6 @@
 		DA1AD328133DA58D00E6A9E1 = {
 			isa = PBXGroup;
 			children = (
-				3D1DBC6C16D1AD47007374E4 /* couchjs */,
 				DAADFB33133DA77500B282D6 /* Core Files */,
 				DA1AD33D133DA58D00E6A9E1 /* CouchDB Server */,
 				DA1AD358133DA58D00E6A9E1 /* CouchDB ServerTests */,
