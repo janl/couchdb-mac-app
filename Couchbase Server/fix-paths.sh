@@ -20,6 +20,9 @@ clean_lib() {
     done
 }
 
+cp "$dest/lib/couchdb/bin/couchjs" "$dest/bin/couchjs"
+otool -L "$dest/bin/couchjs"
+
 # The wrong mozjs is installed.  We require homebrew's spidermonkey to
 # build, and we link against it, but we've built our own.  This is a
 # kind of ugly build hack, but it's why we test.
@@ -31,15 +34,13 @@ for i in 1 2 3
 do
     for fn in "$dest/lib/"*.dylib \
 	"$dest/lib/couchdb/erlang/lib/"couch-*/priv/lib/couch_icu_driver.so \
-    "$dest/lib/erlang/lib/crypto-2.2/priv/lib/"crypto.so
+    "$dest/lib/erlang/lib/crypto-2.2/priv/lib/"crypto.so \
+    "$dest/bin/couchjs"
     do
 	otool -L "$fn" | egrep -v "^[/a-z]" | grep -v /usr/lib \
             | sed -e 's/(\(.*\))//g' | clean_lib "$fn"
     done
 done
-
-cp "$dest/lib/couchdb/bin/couchjs" "$dest/bin/couchjs"
-
 
 relativize() {
         # change absolute paths to dynamic absolute paths
