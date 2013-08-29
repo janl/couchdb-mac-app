@@ -62,9 +62,7 @@ done
 cd "$dest/lib/erlang/lib"
 rm -rf \
     appmon-*/ \
-    asn1-*/ \
     common_test-*/ \
-    compiler-*/ \
     cosEvent-*/ \
     cosEventDomain-*/ \
     cosFileTransfer-*/ \
@@ -99,7 +97,6 @@ rm -rf \
     runtime_tools-*/ \
     snmp-*/ \
     ssh-*/ \
-    syntax_tools-*/ \
     test_server-*/ \
     toolbar-*/ \
     tools-*/ \
