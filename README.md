@@ -1,4 +1,4 @@
-## CouchDB 1.2.1 Application Wrapper for Mac OS X
+## CouchDB Application Wrapper for Mac OS X
 
 ### Build Instructions
 
