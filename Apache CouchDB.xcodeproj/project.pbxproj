@@ -77,7 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3DE5105819B375F500CDA592 /* couchdbx-core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "couchdbx-core"; path = "../../../private/tmp/couchdbx-core"; sourceTree = "<group>"; };
+		3DE5105819B375F500CDA592 /* couchdbx-core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "couchdbx-core"; path = "/tmp/couchdbx-core"; sourceTree = "<group>"; };
 		45041425158361AC0040F6FF /* CouchDB Server.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CouchDB Server.entitlements"; sourceTree = SOURCE_ROOT; };
 		45759BA6156817930003334D /* CouchDb.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CouchDb.icns; sourceTree = "<group>"; };
 		45759BA7156818370003334D /* CouchDb-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CouchDb-Status.png"; sourceTree = "<group>"; };
