@@ -273,14 +273,6 @@
     dictionary_set(iniDict, "product", NULL);
     NSString *vstr = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     //dictionary_set(iniDict, "product:title", [vstr UTF8String]);
-
-    // additional overrides for 1.3.0 pre
-    NSString *utilDriverDir = [@"lib/couchdb/erlang/lib/couch-" stringByAppendingString:vstr];
-    dictionary_set(iniDict, "couchdb:util_driver_dir", [[utilDriverDir stringByAppendingString:@"/priv/lib"] UTF8String]);
-    dictionary_set(iniDict, "couchdb:index_dir", [dbDir UTF8String]);
-    dictionary_set(iniDict, "httpd_global_handlers", NULL);
-    dictionary_set(iniDict, "httpd_global_handlers:_utils", "{couch_httpd_misc_handlers, handle_utils_dir_req, \"share/couchdb/www\"}");
-    dictionary_set(iniDict, "httpd_global_handlers:favicon.ico", "{couch_httpd_misc_handlers, handle_favicon_req, \"share/couchdb/www\"}");
     
     FILE *f = fopen([[self finalConfigPath] UTF8String], "w");
     if (f) {

@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3DE5105919B375F500CDA592 /* couchdbx-core in Copy Core */ = {isa = PBXBuildFile; fileRef = 3DE5105819B375F500CDA592 /* couchdbx-core */; };
 		45759BA915681BA30003334D /* CouchDb-Status-bw.png in Resources */ = {isa = PBXBuildFile; fileRef = 45759BA8156818F20003334D /* CouchDb-Status-bw.png */; };
 		45759BAA15681BA30003334D /* CouchDb-Status.png in Resources */ = {isa = PBXBuildFile; fileRef = 45759BA7156818370003334D /* CouchDb-Status.png */; };
 		45759BAB15681BA30003334D /* CouchDb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 45759BA6156817930003334D /* CouchDb.icns */; };
@@ -35,7 +36,6 @@
 		DA1AD35D133DA58D00E6A9E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA1AD35B133DA58D00E6A9E1 /* InfoPlist.strings */; };
 		DA1AD360133DA58D00E6A9E1 /* Apache_CouchDBTests.h in Resources */ = {isa = PBXBuildFile; fileRef = DA1AD35F133DA58D00E6A9E1 /* Apache_CouchDBTests.h */; };
 		DA1AD362133DA58D00E6A9E1 /* Apache_CouchDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1AD361133DA58D00E6A9E1 /* Apache_CouchDBTests.m */; };
-		DA3C66FA136BA741007C835A /* couchx.ini in Enable Native Query Server */ = {isa = PBXBuildFile; fileRef = DA3C66F7136BA6BC007C835A /* couchx.ini */; };
 		DAADFB01133DA61700B282D6 /* Importer.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF7133DA61700B282D6 /* Importer.nib */; };
 		DAADFB04133DA61700B282D6 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFA133DA61700B282D6 /* Credits.html */; };
 		DAADFB05133DA61700B282D6 /* ensure_full_commit.sh in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */; };
@@ -63,30 +63,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3DE867AE19B37463003B011E /* Copy Files */ = {
+		3DE867AE19B37463003B011E /* Copy Core */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				3DE5105919B375F500CDA592 /* couchdbx-core in Copy Core */,
 			);
-			name = "Copy Files";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA3C66F9136BA714007C835A /* Enable Native Query Server */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "couchdbx-core/etc/couchdb/default.d";
-			dstSubfolderSpec = 7;
-			files = (
-				DA3C66FA136BA741007C835A /* couchx.ini in Enable Native Query Server */,
-			);
-			name = "Enable Native Query Server";
+			name = "Copy Core";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3DE5105819B375F500CDA592 /* couchdbx-core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "couchdbx-core"; path = "../../../private/tmp/couchdbx-core"; sourceTree = "<group>"; };
 		45041425158361AC0040F6FF /* CouchDB Server.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CouchDB Server.entitlements"; sourceTree = SOURCE_ROOT; };
 		45759BA6156817930003334D /* CouchDb.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CouchDb.icns; sourceTree = "<group>"; };
 		45759BA7156818370003334D /* CouchDb-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CouchDb-Status.png"; sourceTree = "<group>"; };
@@ -112,7 +103,6 @@
 		DA1AD35E133DA58D00E6A9E1 /* Apache CouchDBTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Apache CouchDBTests-Prefix.pch"; sourceTree = "<group>"; };
 		DA1AD35F133DA58D00E6A9E1 /* Apache_CouchDBTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Apache_CouchDBTests.h; sourceTree = "<group>"; };
 		DA1AD361133DA58D00E6A9E1 /* Apache_CouchDBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Apache_CouchDBTests.m; sourceTree = "<group>"; };
-		DA3C66F7136BA6BC007C835A /* couchx.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = couchx.ini; sourceTree = "<group>"; };
 		DAADFAF7133DA61700B282D6 /* Importer.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = Importer.nib; sourceTree = "<group>"; };
 		DAADFAFA133DA61700B282D6 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ensure_full_commit.sh; sourceTree = "<group>"; };
@@ -123,15 +113,6 @@
 		DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportableDatabase.m; sourceTree = "<group>"; };
 		DAADFB0F133DA68B00B282D6 /* ImportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportController.h; sourceTree = "<group>"; };
 		DAADFB10133DA68B00B282D6 /* ImportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportController.m; sourceTree = "<group>"; };
-		DAADFB1D133DA75F00B282D6 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
-		DAADFB1E133DA75F00B282D6 /* env.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = env.sh; sourceTree = "<group>"; };
-		DAADFB22133DA75F00B282D6 /* etc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = etc; sourceTree = "<group>"; };
-		DAADFB23133DA75F00B282D6 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
-		DAADFB25133DA75F00B282D6 /* sbin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sbin; sourceTree = "<group>"; };
-		DAADFB26133DA75F00B282D6 /* share */ = {isa = PBXFileReference; lastKnownFileType = folder; path = share; sourceTree = "<group>"; };
-		DAADFB27133DA75F00B282D6 /* var */ = {isa = PBXFileReference; lastKnownFileType = folder; path = var; sourceTree = "<group>"; };
-		DAADFB37133DA84400B282D6 /* erl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = erl; sourceTree = "<group>"; };
-		DAADFB38133DA84400B282D6 /* fix-paths.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "fix-paths.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +138,7 @@
 		DA1AD328133DA58D00E6A9E1 = {
 			isa = PBXGroup;
 			children = (
-				DAADFB33133DA77500B282D6 /* Core Files */,
+				3DE5105819B375F500CDA592 /* couchdbx-core */,
 				DA1AD33D133DA58D00E6A9E1 /* CouchDB Server */,
 				DA1AD358133DA58D00E6A9E1 /* CouchDB ServerTests */,
 				DA1AD336133DA58D00E6A9E1 /* Frameworks */,
@@ -221,9 +202,6 @@
 				DA0E692113DD364400CDAC6D /* dictionary.h */,
 				DA0E692213DD364400CDAC6D /* iniparser.c */,
 				DA0E692313DD364400CDAC6D /* iniparser.h */,
-				DA3C66F7136BA6BC007C835A /* couchx.ini */,
-				DAADFB37133DA84400B282D6 /* erl */,
-				DAADFB38133DA84400B282D6 /* fix-paths.sh */,
 				DAADFAF7133DA61700B282D6 /* Importer.nib */,
 				DAADFAFA133DA61700B282D6 /* Credits.html */,
 				DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */,
@@ -257,21 +235,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DAADFB33133DA77500B282D6 /* Core Files */ = {
-			isa = PBXGroup;
-			children = (
-				DAADFB1D133DA75F00B282D6 /* bin */,
-				DAADFB1E133DA75F00B282D6 /* env.sh */,
-				DAADFB22133DA75F00B282D6 /* etc */,
-				DAADFB23133DA75F00B282D6 /* lib */,
-				DAADFB25133DA75F00B282D6 /* sbin */,
-				DAADFB26133DA75F00B282D6 /* share */,
-				DAADFB27133DA75F00B282D6 /* var */,
-			);
-			name = "Core Files";
-			path = ../../../build;
-			sourceTree = SOURCE_ROOT;
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -282,8 +245,7 @@
 				DA1AD32F133DA58D00E6A9E1 /* Sources */,
 				DA1AD330133DA58D00E6A9E1 /* Frameworks */,
 				DA1AD331133DA58D00E6A9E1 /* Resources */,
-				3DE867AE19B37463003B011E /* Copy Files */,
-				DA3C66F9136BA714007C835A /* Enable Native Query Server */,
+				3DE867AE19B37463003B011E /* Copy Core */,
 			);
 			buildRules = (
 			);

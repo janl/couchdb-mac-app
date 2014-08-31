@@ -23,11 +23,11 @@
 	<key>CFBundleURLTypes</key>
 	<array/>
 	<key>CFBundleVersion</key>
-	<string>1.4.0</string>
+	<string>1.6.0</string>
 	<key>HomePage</key>
 	<string>http://127.0.0.1:5984/_utils/</string>
 	<key>LSApplicationCategoryType</key>
-	<string>public.app-category.business</string>
+	<string>public.app-category.developer-tools</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSMainNibFile</key>
