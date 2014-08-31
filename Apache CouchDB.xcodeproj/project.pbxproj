@@ -43,14 +43,6 @@
 		DAADFB13133DA68B00B282D6 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */; };
 		DAADFB14133DA68B00B282D6 /* ImportableDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */; };
 		DAADFB15133DA68B00B282D6 /* ImportController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB10133DA68B00B282D6 /* ImportController.m */; };
-		DAADFB28133DA75F00B282D6 /* bin in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB1D133DA75F00B282D6 /* bin */; };
-		DAADFB29133DA75F00B282D6 /* env.sh in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB1E133DA75F00B282D6 /* env.sh */; };
-		DAADFB2D133DA75F00B282D6 /* etc in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB22133DA75F00B282D6 /* etc */; };
-		DAADFB2E133DA75F00B282D6 /* lib in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB23133DA75F00B282D6 /* lib */; };
-		DAADFB30133DA75F00B282D6 /* sbin in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB25133DA75F00B282D6 /* sbin */; };
-		DAADFB31133DA75F00B282D6 /* share in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB26133DA75F00B282D6 /* share */; };
-		DAADFB32133DA75F00B282D6 /* var in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB27133DA75F00B282D6 /* var */; };
-		DAADFB3B133DA84E00B282D6 /* erl in Install Proper erl start thing */ = {isa = PBXBuildFile; fileRef = DAADFB37133DA84400B282D6 /* erl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +63,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3DE867AE19B37463003B011E /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA3C66F9136BA714007C835A /* Enable Native Query Server */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -80,34 +82,6 @@
 				DA3C66FA136BA741007C835A /* couchx.ini in Enable Native Query Server */,
 			);
 			name = "Enable Native Query Server";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAADFB1C133DA72C00B282D6 /* Install Core */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "couchdbx-core";
-			dstSubfolderSpec = 7;
-			files = (
-				DAADFB28133DA75F00B282D6 /* bin in Install Core */,
-				DAADFB29133DA75F00B282D6 /* env.sh in Install Core */,
-				DAADFB2D133DA75F00B282D6 /* etc in Install Core */,
-				DAADFB2E133DA75F00B282D6 /* lib in Install Core */,
-				DAADFB30133DA75F00B282D6 /* sbin in Install Core */,
-				DAADFB31133DA75F00B282D6 /* share in Install Core */,
-				DAADFB32133DA75F00B282D6 /* var in Install Core */,
-			);
-			name = "Install Core";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAADFB36133DA7E800B282D6 /* Install Proper erl start thing */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "couchdbx-core/bin";
-			dstSubfolderSpec = 7;
-			files = (
-				DAADFB3B133DA84E00B282D6 /* erl in Install Proper erl start thing */,
-			);
-			name = "Install Proper erl start thing";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -308,9 +282,7 @@
 				DA1AD32F133DA58D00E6A9E1 /* Sources */,
 				DA1AD330133DA58D00E6A9E1 /* Frameworks */,
 				DA1AD331133DA58D00E6A9E1 /* Resources */,
-				DAADFB1C133DA72C00B282D6 /* Install Core */,
-				DAADFB34133DA78D00B282D6 /* Fixup Paths */,
-				DAADFB36133DA7E800B282D6 /* Install Proper erl start thing */,
+				3DE867AE19B37463003B011E /* Copy Files */,
 				DA3C66F9136BA714007C835A /* Enable Native Query Server */,
 			);
 			buildRules = (
@@ -409,21 +381,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		DAADFB34133DA78D00B282D6 /* Fixup Paths */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Couchbase Server/fix-paths.sh",
-			);
-			name = "Fixup Paths";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "exec \"$SCRIPT_INPUT_FILE_0\"";
 		};
 		DAE2157A133DBA20006D63D2 /* Zip it up */ = {
 			isa = PBXShellScriptBuildPhase;
