@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>CouchDb.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.apache.couchdb</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
