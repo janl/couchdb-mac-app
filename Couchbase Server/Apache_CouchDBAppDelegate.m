@@ -302,21 +302,21 @@
   out = [[NSPipe alloc] init];
   task = [[NSTask alloc] init];
 
-    startTime = time(NULL);
+  startTime = time(NULL);
 
   NSMutableString *launchPath = [[NSMutableString alloc] init];
   [launchPath appendString:[[NSBundle mainBundle] resourcePath]];
   [launchPath appendString:@"/couchdbx-core"];
   [task setCurrentDirectoryPath:launchPath];
 
-    NSDictionary *env = [NSDictionary dictionaryWithObjectsAndKeys:
+  NSDictionary *env = [NSDictionary dictionaryWithObjectsAndKeys:
                          @"./bin:/bin:/usr/bin", @"PATH",
                          NSHomeDirectory(), @"HOME",
                          nil, nil];
-    [task setEnvironment:env];
+  [task setEnvironment:env];
 
   [launchPath appendString:@"/bin/couchdb"];
-    [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
+  [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
   [task setLaunchPath:launchPath];
   NSArray *args = [[NSArray alloc] initWithObjects:@"-i", @"-a", [self finalConfigPath], nil];
   [task setArguments:args];
@@ -393,7 +393,7 @@
                                         encoding: NSUTF8StringEncoding];
 
     if (!hasSeenStart) {
-        if ([s hasPrefix:@"Apache CouchDB has started"]) {
+        if ([s hasPrefix:@"Application snappy started"]) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             if ([defaults boolForKey:@"browseAtStart"]) {
                 [self openFuton];
@@ -402,8 +402,7 @@
         }
     }
 
-    [self logMessage:[s stringByReplacingOccurrencesOfString:@"1> "
-                                                  withString:@""]];
+    [self logMessage: s];
 
     [s release];
 }
