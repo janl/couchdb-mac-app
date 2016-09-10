@@ -5,16 +5,19 @@
 #import "Apache_CouchDBAppDelegate.h"
 #import "iniparser.h"
 
-@implementation Couchbase_ServerAppDelegate
+@implementation CouchDBAppDelegate
 
 -(void)applicationWillTerminate:(NSNotification *)notification
 {
-  [self ensureFullCommit];
+    NSLog(@"in applicationWillTerminate");
+//  [self ensureFullCommit];
+//    [self stop];
 }
 
 - (void)windowWillClose:(NSNotification *)aNotification
 {
-    [self stop];
+    NSLog(@"in windowWillClose");
+//    [self stop];
 }
 
 -(void)applicationWillFinishLaunching:(NSNotification *)notification
@@ -104,8 +107,6 @@
 
 -(void)awakeFromNib
 {
-    hasSeenStart = NO;
-
     logPath = [[self logFilePath:@"couchdb.log"] retain];
     const char *logPathC = [logPath cStringUsingEncoding:NSUTF8StringEncoding];
 
@@ -165,19 +166,19 @@
 -(IBAction)start:(id)sender
 {
     if([task isRunning]) {
-        [self stop];
+        [self stop:self];
         return;
     }
 
     [self launchCouchDB];
 }
 
--(void)stop
+-(IBAction)stop:(id)sender
 {
-    NSFileHandle *writer;
-    writer = [in fileHandleForWriting];
-    [writer writeData:[@"q().\n" dataUsingEncoding:NSASCIIStringEncoding]];
-    [writer closeFile];
+    NSLog(@"in stop");
+    NSLog(@"calling [task terminate]");
+    [task terminate];
+    [[NSApplication sharedApplication] terminate:self];
 }
 
 /* found at http://www.cocoadev.com/index.pl?ApplicationSupportFolder */
@@ -318,8 +319,6 @@
   [launchPath appendString:@"/bin/couchdb"];
   [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
   [task setLaunchPath:launchPath];
-  NSArray *args = [[NSArray alloc] initWithObjects:@"-i", @"-a", [self finalConfigPath], nil];
-  [task setArguments:args];
   [task setStandardInput:in];
   [task setStandardOutput:out];
 
@@ -328,17 +327,46 @@
   nc = [NSNotificationCenter defaultCenter];
 
   [nc addObserver:self
-           selector:@selector(dataReady:)
-               name:NSFileHandleReadCompletionNotification
-             object:fh];
-
-  [nc addObserver:self
            selector:@selector(taskTerminated:)
                name:NSTaskDidTerminateNotification
              object:task];
 
-    [task launch];
-    [fh readInBackgroundAndNotify];
+  // see if there are useful nstask notifications, if not:
+  // send request to 127.0.0.1:5984 every second until it succeeds
+  // then maybe open futon
+
+  [task launch];
+  [fh readInBackgroundAndNotify];
+  [self waitForAPI];
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  if ([defaults boolForKey:@"browseAtStart"]) {
+      [self openFuton];
+  }
+}
+
+-(void) waitForAPI
+{
+  int times = 10;
+  while (times--) {
+    // Send a synchronous request
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:5984/_up"]];
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest
+                          returningResponse:&response
+                                      error:&error];
+    // if code == 200, return
+    // http://stackoverflow.com/questions/25431042/nsurlresponse-how-to-get-status-code#25431043
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+    NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+    NSLog(@"%@", data);
+    if (200 == [httpResponse statusCode]) {
+      return;
+    }
+    [NSThread sleepForTimeInterval:1.0f]; // snooze 1s
+  }
+  [self logMessage: @"Can’t reach http://127.0.0.1:5984/ after 10 seconds, giving up."];
+  [self logMessage: @"Please check ~/Library/Logs/CouchDB2.log for details"];
 }
 
 -(void)taskTerminated:(NSNotification *)note
@@ -384,38 +412,6 @@
 -(IBAction)browse:(id)sender
 {
   [self openFuton];
-    //[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://127.0.0.1:5984/_utils/"]];
-}
-
-- (void)appendData:(NSData *)d
-{
-    NSString *s = [[NSString alloc] initWithData: d
-                                        encoding: NSUTF8StringEncoding];
-
-    if (!hasSeenStart) {
-        if ([s hasPrefix:@"Application snappy started"]) {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            if ([defaults boolForKey:@"browseAtStart"]) {
-                [self openFuton];
-            }
-            hasSeenStart = YES;
-        }
-    }
-
-    [self logMessage: s];
-
-    [s release];
-}
-
-- (void)dataReady:(NSNotification *)n
-{
-    NSData *d;
-    d = [[n userInfo] valueForKey:NSFileHandleNotificationDataItem];
-    if ([d length]) {
-        [self appendData:d];
-    }
-    if (task)
-        [[out fileHandleForReading] readInBackgroundAndNotify];
 }
 
 -(IBAction)setLaunchPref:(id)sender {

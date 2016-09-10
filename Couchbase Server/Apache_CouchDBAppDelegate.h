@@ -8,7 +8,7 @@
 
 #define MIN_LIFETIME 10
 
-@interface Couchbase_ServerAppDelegate : NSObject{
+@interface CouchDBAppDelegate : NSObject{
     NSStatusItem *statusBar;
     IBOutlet NSMenu *statusMenu;
     
@@ -30,7 +30,7 @@
 -(IBAction)browse:(id)sender;
 
 -(void)launchCouchDB;
--(void)stop;
+-(IBAction)stop:(id)sender;
 -(void)openFuton;
 -(void)taskTerminated:(NSNotification *)note;
 -(void)cleanup;
