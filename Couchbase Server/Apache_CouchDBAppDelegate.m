@@ -27,17 +27,6 @@
     [[NSApplication sharedApplication] orderFrontStandardAboutPanel:sender];
 }
 
--(void)logMessage:(NSString*)msg {
-    const char *str = [msg cStringUsingEncoding:NSUTF8StringEncoding];
-    if (str) {
-        fwrite(str, strlen(str), 1, logFile);
-    }
-}
-
--(void)flushLog {
-    fflush(logFile);
-}
-
 - (NSString *)finalConfigPath {
     NSString *confFile = nil;
     FSRef foundRef;
@@ -54,39 +43,8 @@
     return confFile;
 }
 
-- (NSString *)logFilePath:(NSString*)logName {
-    NSString *logDir = nil;
-    FSRef foundRef;
-    OSErr err = FSFindFolder(kUserDomain, kLogsFolderType, kDontCreateFolder, &foundRef);
-    if (err == noErr) {
-        unsigned char path[PATH_MAX];
-        OSStatus validPath = FSRefMakePath(&foundRef, path, sizeof(path));
-        if (validPath == noErr) {
-            logDir = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:(const char *)path
-                                                                                 length:(NSUInteger)strlen((char*)path)];
-        }
-    }
-  logDir = [logDir stringByAppendingPathComponent:logName];
-    return logDir;
-}
-
 -(void)awakeFromNib
 {
-    logPath = [[self logFilePath:@"couchdb.log"] retain];
-    const char *logPathC = [logPath cStringUsingEncoding:NSUTF8StringEncoding];
-
-    NSString *oldLogFileString = [self logFilePath:@"couchdb.log.old"];
-    const char *oldLogPath = [oldLogFileString cStringUsingEncoding:NSUTF8StringEncoding];
-    rename(logPathC, oldLogPath); // This will fail the first time.
-
-    // Now our logs go to a private file.
-    logFile = fopen(logPathC, "w");
-
-    [NSTimer scheduledTimerWithTimeInterval:1.0
-                                    target:self selector:@selector(flushLog)
-                                    userInfo:nil
-                                    repeats:YES];
-
     [[NSUserDefaults standardUserDefaults]
      registerDefaults: [NSDictionary dictionaryWithObjectsAndKeys:
                         [NSNumber numberWithBool:YES], @"browseAtStart",
@@ -225,17 +183,6 @@
     dictionary_set(iniDict, "query_servers:javascript", "bin/couchjs share/couchdb/server/main.js");
     dictionary_set(iniDict, "query_servers:coffeescript", "bin/couchjs share/couchdb/server/main-coffee.js");
 
-    // full log file
-    NSString *logDir = [dataDir stringByAppendingString:@"/var/log/couchdb"];
-
-    // create if it doesn't exist
-  if(![[NSFileManager defaultManager] fileExistsAtPath:logDir]) {
-    [[NSFileManager defaultManager] createDirectoryAtPath:logDir withIntermediateDirectories:YES attributes:nil error:NULL];
-  }
-
-    NSString *fullLogFile = [logDir stringByAppendingString:@"/couch.log"];
-    dictionary_set(iniDict, "log", NULL);
-    dictionary_set(iniDict, "log:file", [fullLogFile UTF8String]);
 
     dictionary_set(iniDict, "product", NULL);
     NSString *vstr = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
@@ -282,7 +229,7 @@
   [task setEnvironment:env];
 
   [launchPath appendString:@"/bin/couchdb"];
-  [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
+  NSLog(@"Launching '%@'\n", launchPath);
   [task setLaunchPath:launchPath];
   [task setStandardInput:in];
   [task setStandardOutput:out];
@@ -330,15 +277,14 @@
     }
     [NSThread sleepForTimeInterval:1.0f]; // snooze 1s
   }
-  [self logMessage: @"Can’t reach http://127.0.0.1:5984/ after 10 seconds, giving up."];
-  [self logMessage: @"Please check ~/Library/Logs/CouchDB2.log for details"];
+  NSLog(@"Can’t reach http://127.0.0.1:5984/ after 10 seconds, giving up.");
+  NSLog(@"Please check ~/Library/Logs/CouchDB2.log for details");
 }
 
 -(void)taskTerminated:(NSNotification *)note
 {
     [self cleanup];
-    [self logMessage: [NSString stringWithFormat:@"Terminated with status %d\n",
-                       [[note object] terminationStatus]]];
+    NSLog(@"Terminated with status %d\n", [[note object] terminationStatus]);
 
     time_t now = time(NULL);
     if (now - startTime < MIN_LIFETIME) {
@@ -409,27 +355,6 @@
     [self updateAddItemButtonState];
 }
 
-- (IBAction)showImportWindow:(id)sender
-{
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"runImport"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-    [self logMessage:@"Starting import"];
-    [NSApp activateIgnoringOtherApps:YES];
-
-//    ImportController *controller = [[ImportController alloc]
-//                                    initWithWindowNibName:@"Importer"];
-
-//    [controller setPaths:[self applicationSupportFolder]
-//                    from:[self applicationSupportFolder:@"CouchDBX"]];
-//    [controller loadWindow];
-
-//    if (sender != nil && ![controller hasImportableDBs]) {
-//        NSRunAlertPanel(@"No Importable Databases",
-//                        @"No databases can be imported from CouchDBX.", nil, nil, nil);
-//    }
-}
-
 -(IBAction)showTechSupport:(id)sender {
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
   NSString *homePage = [info objectForKey:@"SupportPage"];
@@ -439,21 +364,13 @@
 }
 
 -(IBAction)showLogs:(id)sender {
-    FSRef ref;
+    NSArray *URLs = [[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory
+                                                           inDomains:NSUserDomainMask];
+    NSURL *logsURL = [[URLs lastObject] URLByAppendingPathComponent:@"Logs"];
+    NSString *logsPath = [logsURL path];
+    NSString *logsFile = [logsPath stringByAppendingString:@"/CouchDB2.log"];
 
-    if (FSPathMakeRef((const UInt8 *)[logPath cStringUsingEncoding:NSUTF8StringEncoding],
-                      &ref, NULL) != noErr) {
-        NSRunAlertPanel(@"Cannot Find Logfile",
-                        @"I've been looking for logs in all the wrong places.", nil, nil, nil);
-        return;
-    }
-
-    LSLaunchFSRefSpec params = {NULL, 1, &ref, NULL, kLSLaunchDefaults, NULL};
-
-    if (LSOpenFromRefSpec(&params, NULL) != noErr) {
-        NSRunAlertPanel(@"Cannot View Logfile",
-                        @"Error launching log viewer.", nil, nil, nil);
-    }
+    [[NSWorkspace sharedWorkspace] openFile:logsFile withApplication: @"Console"];
 }
 
 @end

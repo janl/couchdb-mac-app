@@ -21,9 +21,6 @@
     
     BOOL hasSeenStart;
     time_t startTime;
-
-    NSString *logPath;
-    FILE *logFile;
 }
 
 -(IBAction)start:(id)sender;
@@ -34,7 +31,6 @@
 -(void)openFuton;
 -(void)taskTerminated:(NSNotification *)note;
 -(void)cleanup;
--(void)ensureFullCommit;
 -(NSString *)applicationSupportFolder;
 
 -(void)updateAddItemButtonState;
@@ -44,7 +40,6 @@
 
 -(IBAction)showAboutPanel:(id)sender;
 -(IBAction)showLogs:(id)sender;
--(IBAction)showImportWindow:(id)sender;
 -(IBAction)showTechSupport:(id)sender;
 
 
