@@ -185,16 +185,7 @@
     
     
     dictionary_set(iniDict, "product", NULL);
-//    NSString *vstr = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-//    //dictionary_set(iniDict, "product:title", [vstr UTF8String]);
-//    
-//    // additional overrides for 1.3.0 pre
-//    NSString *utilDriverDir = [@"lib/couchdb/erlang/lib/couch-" stringByAppendingString:vstr];
-//    dictionary_set(iniDict, "couchdb:util_driver_dir", [[utilDriverDir stringByAppendingString:@"/priv/lib"] UTF8String]);
-//    dictionary_set(iniDict, "couchdb:index_dir", [dbDir UTF8String]);
-//    dictionary_set(iniDict, "httpd_global_handlers", NULL);
-//    dictionary_set(iniDict, "httpd_global_handlers:_utils", "{couch_httpd_misc_handlers, handle_utils_dir_req, \"share/couchdb/www\"}");
-//    dictionary_set(iniDict, "httpd_global_handlers:favicon.ico", "{couch_httpd_misc_handlers, handle_favicon_req, \"share/couchdb/www\"}");
+
     
     FILE *f = fopen([[self finalConfigPath] UTF8String], "w");
     if (f) {
@@ -221,10 +212,23 @@
     [launchPath appendString:[[NSBundle mainBundle] resourcePath]];
     [launchPath appendString:@"/couchdbx-core"];
     [task setCurrentDirectoryPath:launchPath];
+
+// TODO: externally supplied ini files can’t have spaces in their paths
+//    (ERL_FLAGS="-couch_ini /path/to/default.ini /path/to/local.ini"
+//    NSString *iniPath = [launchPath stringByAppendingString:@"/etc"];
+//    NSString *iniPathDefault = [iniPath stringByAppendingString:@"/default.ini"];
+//    NSString *iniPathLocal = [iniPath stringByAppendingString:@"/local.ini"];
+//    NSString *iniPathLocal = @"/tmp/x.ini";
+//
+//    NSString *iniString = [[[@"-couch_ini "  stringByAppendingString:iniPathDefault]
+//                                             stringByAppendingString:@" "]
+//                                             stringByAppendingString:iniPathLocal];
+    
     
     NSDictionary *env = [NSDictionary dictionaryWithObjectsAndKeys:
                          @"./bin:/bin:/usr/bin", @"PATH",
                          NSHomeDirectory(), @"HOME",
+//                         iniString, @"ERL_FLAGS",
                          nil, nil];
     [task setEnvironment:env];
     
