@@ -10,8 +10,6 @@
 -(void)applicationWillTerminate:(NSNotification *)notification
 {
     NSLog(@"in applicationWillTerminate");
-//  [self ensureFullCommit];
-//    [self stop];
 }
 
 - (void)windowWillClose:(NSNotification *)aNotification
@@ -38,39 +36,6 @@
 
 -(void)flushLog {
     fflush(logFile);
-}
-
--(void)ensureFullCommit
-{
-    // determine data dir
-  NSString *dataDir = [self applicationSupportFolder];
-
-  // find couch.uri file
-  NSMutableString *urifile = [[NSMutableString alloc] init];
-  [urifile appendString: dataDir]; // couchdbx-core
-  [urifile appendString: @"/var/run/couchdb/couch.uri"];
-
-  // get couch uri
-  NSString *uri = [NSString stringWithContentsOfFile:urifile encoding:NSUTF8StringEncoding error:NULL];
-
-  // TODO: maybe parse out \n
-
-  // get database dir
-  NSString *databaseDir = [self applicationSupportFolder];
-
-  // get ensure_full_commit.sh
-  NSMutableString *ensure_full_commit_script = [[NSMutableString alloc] init];
-  [ensure_full_commit_script appendString: [[NSBundle mainBundle] resourcePath]];
-  [ensure_full_commit_script appendString: @"/ensure_full_commit.sh"];
-
-  // exec ensure_full_commit.sh database_dir couch.uri
-  NSArray *args = [[NSArray alloc] initWithObjects:databaseDir, uri, nil];
-  NSTask *commitTask = [[NSTask alloc] init];
-  [commitTask setArguments: args];
-  [commitTask launch];
-  [commitTask waitUntilExit];
-
-  // yay!
 }
 
 - (NSString *)finalConfigPath {
