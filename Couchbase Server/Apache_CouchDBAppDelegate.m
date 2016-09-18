@@ -15,7 +15,7 @@
 - (void)windowWillClose:(NSNotification *)aNotification
 {
     NSLog(@"in windowWillClose");
-//    [self stop];
+    //    [self stop];
 }
 
 -(void)applicationWillFinishLaunching:(NSNotification *)notification
@@ -50,19 +50,19 @@
                         [NSNumber numberWithBool:YES], @"browseAtStart",
                         [NSNumber numberWithBool:YES], @"runImport", nil, nil]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
+    
     // Make sure we have a unique identifier for this installation.
     if ([defaults valueForKey:@"uniqueness"] == nil) {
         CFUUIDRef uuidObj = CFUUIDCreate(nil);
         NSString *uuidString = (NSString*)CFUUIDCreateString(nil, uuidObj);
         CFRelease(uuidObj);
-
+        
         [defaults setValue:uuidString forKey:@"uniqueness"];
         [defaults synchronize];
-
+        
         [uuidString release];
     }
-
+    
     statusBar=[[NSStatusBar systemStatusBar] statusItemWithLength: 26.0];
     NSImage *statusIcon = [NSImage imageNamed:@"CouchDb-Status-bw.png"];
     [statusIcon setTemplate:YES];
@@ -71,7 +71,7 @@
     [statusBar setEnabled:YES];
     [statusBar setHighlightMode:YES];
     [statusBar retain];
-
+    
     // Fix up the masks for all the alt items.
     for (int i = 0; i < [statusMenu numberOfItems]; ++i) {
         NSMenuItem *itm = [statusMenu itemAtIndex:i];
@@ -79,11 +79,11 @@
             [itm setKeyEquivalentModifierMask:NSAlternateKeyMask];
         }
     }
-
+    
     [launchBrowserItem setState:([defaults boolForKey:@"browseAtStart"] ? NSOnState : NSOffState)];
     [self updateAddItemButtonState];
-
-  [self launchCouchDB];
+    
+    [self launchCouchDB];
 }
 
 -(IBAction)start:(id)sender
@@ -92,7 +92,7 @@
         [self stop:self];
         return;
     }
-
+    
     [self launchCouchDB];
 }
 
@@ -117,7 +117,7 @@
                                                                                                    length:(NSUInteger)strlen((char*)path)];
         }
     }
-  applicationSupportFolder = [applicationSupportFolder stringByAppendingPathComponent:appName];
+    applicationSupportFolder = [applicationSupportFolder stringByAppendingPathComponent:appName];
     return applicationSupportFolder;
 }
 
@@ -127,40 +127,40 @@
 
 -(void)setInitParams
 {
-  // determine data dir
-  NSString *dataDir = [self applicationSupportFolder];
-
+    // determine data dir
+    NSString *dataDir = [self applicationSupportFolder];
+    
     // database and views dir
     NSString *dbDir = [dataDir stringByAppendingString:@"/var/lib/couchdb"];
-
-  // create if it doesn't exist
-  if(![[NSFileManager defaultManager] fileExistsAtPath:dataDir]) {
-    [[NSFileManager defaultManager] createDirectoryAtPath:dataDir withIntermediateDirectories:YES attributes:nil error:NULL];
-  }
-
+    
+    // create if it doesn't exist
+    if(![[NSFileManager defaultManager] fileExistsAtPath:dataDir]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:dataDir withIntermediateDirectories:YES attributes:nil error:NULL];
+    }
+    
     // config dir
     NSString *confDir = [dataDir stringByAppendingString:@"/etc/couchdb"];
-
-  // create if it doesn't exist
-  if(![[NSFileManager defaultManager] fileExistsAtPath:confDir]) {
-    [[NSFileManager defaultManager] createDirectoryAtPath:confDir withIntermediateDirectories:YES attributes:nil error:NULL];
-
+    
+    // create if it doesn't exist
+    if(![[NSFileManager defaultManager] fileExistsAtPath:confDir]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:confDir withIntermediateDirectories:YES attributes:nil error:NULL];
+        
         // remove old file, if any
         [[NSFileManager defaultManager] removeItemAtPath: [self finalConfigPath] error: NULL];
-
+        
         // create sym link to local.ini
         NSString *localIni = [confDir stringByAppendingString:@"/local.ini"];
         if ([[NSFileManager defaultManager] createFileAtPath:localIni contents:nil attributes:nil]) {
             [[NSFileManager defaultManager] createSymbolicLinkAtPath: [self finalConfigPath] withDestinationPath: localIni error: NULL];
         }
-  }
-
+    }
+    
     dictionary* iniDict = iniparser_load([[self finalConfigPath] UTF8String]);
     if (iniDict == NULL) {
         iniDict = dictionary_new(0);
         assert(iniDict);
     }
-
+    
     dictionary_set(iniDict, "couchdb", NULL);
     if (iniparser_getstring(iniDict, "couchdb:database_dir", NULL) == NULL) {
         dictionary_set(iniDict, "couchdb:database_dir", [dbDir UTF8String]);
@@ -168,26 +168,26 @@
     if (iniparser_getstring(iniDict, "couchdb:view_index_dir", NULL) == NULL) {
         dictionary_set(iniDict, "couchdb:view_index_dir", [dbDir UTF8String]);
     }
-
+    
     // uri dir
     NSString *runDir = [dataDir stringByAppendingString:@"/var/run/couchdb"];
-
-  // create if it doesn't exist
-  if(![[NSFileManager defaultManager] fileExistsAtPath:runDir]) {
-    [[NSFileManager defaultManager] createDirectoryAtPath:runDir withIntermediateDirectories:YES attributes:nil error:NULL];
-  }
+    
+    // create if it doesn't exist
+    if(![[NSFileManager defaultManager] fileExistsAtPath:runDir]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:runDir withIntermediateDirectories:YES attributes:nil error:NULL];
+    }
     NSString *uriFile = [runDir stringByAppendingString:@"/couch.uri"];
     dictionary_set(iniDict, "couchdb:uri_file", [uriFile UTF8String]);
-
+    
     dictionary_set(iniDict, "query_servers", NULL);
     dictionary_set(iniDict, "query_servers:javascript", "bin/couchjs share/couchdb/server/main.js");
     dictionary_set(iniDict, "query_servers:coffeescript", "bin/couchjs share/couchdb/server/main-coffee.js");
-
-
+    
+    
     dictionary_set(iniDict, "product", NULL);
     NSString *vstr = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     //dictionary_set(iniDict, "product:title", [vstr UTF8String]);
-
+    
     // additional overrides for 1.3.0 pre
     NSString *utilDriverDir = [@"lib/couchdb/erlang/lib/couch-" stringByAppendingString:vstr];
     dictionary_set(iniDict, "couchdb:util_driver_dir", [[utilDriverDir stringByAppendingString:@"/priv/lib"] UTF8String]);
@@ -195,7 +195,7 @@
     dictionary_set(iniDict, "httpd_global_handlers", NULL);
     dictionary_set(iniDict, "httpd_global_handlers:_utils", "{couch_httpd_misc_handlers, handle_utils_dir_req, \"share/couchdb/www\"}");
     dictionary_set(iniDict, "httpd_global_handlers:favicon.ico", "{couch_httpd_misc_handlers, handle_favicon_req, \"share/couchdb/www\"}");
-
+    
     FILE *f = fopen([[self finalConfigPath] UTF8String], "w");
     if (f) {
         iniparser_dump_ini(iniDict, f);
@@ -203,89 +203,89 @@
     } else {
         NSLog(@"Can't write to config file:  %@:  %s\n", [self finalConfigPath], strerror(errno));
     }
-
+    
     iniparser_freedict(iniDict);
 }
 
 -(void)launchCouchDB
 {
-  [self setInitParams];
-
-  in = [[NSPipe alloc] init];
-  out = [[NSPipe alloc] init];
-  task = [[NSTask alloc] init];
-
-  startTime = time(NULL);
-
-  NSMutableString *launchPath = [[NSMutableString alloc] init];
-  [launchPath appendString:[[NSBundle mainBundle] resourcePath]];
-  [launchPath appendString:@"/couchdbx-core"];
-  [task setCurrentDirectoryPath:launchPath];
-
-  NSDictionary *env = [NSDictionary dictionaryWithObjectsAndKeys:
+    [self setInitParams];
+    
+    in = [[NSPipe alloc] init];
+    out = [[NSPipe alloc] init];
+    task = [[NSTask alloc] init];
+    
+    startTime = time(NULL);
+    
+    NSMutableString *launchPath = [[NSMutableString alloc] init];
+    [launchPath appendString:[[NSBundle mainBundle] resourcePath]];
+    [launchPath appendString:@"/couchdbx-core"];
+    [task setCurrentDirectoryPath:launchPath];
+    
+    NSDictionary *env = [NSDictionary dictionaryWithObjectsAndKeys:
                          @"./bin:/bin:/usr/bin", @"PATH",
                          NSHomeDirectory(), @"HOME",
                          nil, nil];
-  [task setEnvironment:env];
-
-  [launchPath appendString:@"/bin/couchdb"];
-  NSLog(@"Launching '%@'\n", launchPath);
-  [task setLaunchPath:launchPath];
-  [task setStandardInput:in];
-  [task setStandardOutput:out];
-
-  NSFileHandle *fh = [out fileHandleForReading];
-  NSNotificationCenter *nc;
-  nc = [NSNotificationCenter defaultCenter];
-
-  [nc addObserver:self
+    [task setEnvironment:env];
+    
+    [launchPath appendString:@"/bin/couchdb"];
+    NSLog(@"Launching '%@'\n", launchPath);
+    [task setLaunchPath:launchPath];
+    [task setStandardInput:in];
+    [task setStandardOutput:out];
+    
+    NSFileHandle *fh = [out fileHandleForReading];
+    NSNotificationCenter *nc;
+    nc = [NSNotificationCenter defaultCenter];
+    
+    [nc addObserver:self
            selector:@selector(taskTerminated:)
                name:NSTaskDidTerminateNotification
              object:task];
-
-  // see if there are useful nstask notifications, if not:
-  // send request to 127.0.0.1:5984 every second until it succeeds
-  // then maybe open futon
-
-  [task launch];
-  [fh readInBackgroundAndNotify];
-  [self waitForAPI];
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  if ([defaults boolForKey:@"browseAtStart"]) {
-      [self openFuton];
-  }
+    
+    // see if there are useful nstask notifications, if not:
+    // send request to 127.0.0.1:5984 every second until it succeeds
+    // then maybe open futon
+    
+    [task launch];
+    [fh readInBackgroundAndNotify];
+    [self waitForAPI];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:@"browseAtStart"]) {
+        [self openFuton];
+    }
 }
 
 -(void) waitForAPI
 {
-  int times = 10;
-  while (times--) {
-    // Send a synchronous request
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:5984/_up"]];
-    NSURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest
-                          returningResponse:&response
-                                      error:&error];
-    // if code == 200, return
-    // http://stackoverflow.com/questions/25431042/nsurlresponse-how-to-get-status-code#25431043
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-    NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
-    NSLog(@"%@", data);
-    if (200 == [httpResponse statusCode]) {
-      return;
+    int times = 10;
+    while (times--) {
+        // Send a synchronous request
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:5984/_up"]];
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest
+                                             returningResponse:&response
+                                                         error:&error];
+        // if code == 200, return
+        // http://stackoverflow.com/questions/25431042/nsurlresponse-how-to-get-status-code#25431043
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+        NSLog(@"%@", data);
+        if (200 == [httpResponse statusCode]) {
+            return;
+        }
+        [NSThread sleepForTimeInterval:1.0f]; // snooze 1s
     }
-    [NSThread sleepForTimeInterval:1.0f]; // snooze 1s
-  }
-  NSLog(@"Can’t reach http://127.0.0.1:5984/ after 10 seconds, giving up.");
-  NSLog(@"Please check ~/Library/Logs/CouchDB2.log for details");
+    NSLog(@"Can’t reach http://127.0.0.1:5984/ after 10 seconds, giving up.");
+    NSLog(@"Please check ~/Library/Logs/CouchDB2.log for details");
 }
 
 -(void)taskTerminated:(NSNotification *)note
 {
     [self cleanup];
     NSLog(@"Terminated with status %d\n", [[note object] terminationStatus]);
-
+    
     time_t now = time(NULL);
     if (now - startTime < MIN_LIFETIME) {
         NSInteger b = NSRunAlertPanel(@"Problem Running CouchDB",
@@ -295,7 +295,7 @@
             [NSApp terminate:self];
         }
     }
-
+    
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(launchCouchDB) userInfo:nil repeats:NO];
 }
 
@@ -303,42 +303,42 @@
 {
     [task release];
     task = nil;
-
+    
     [in release];
     in = nil;
     [out release];
     out = nil;
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)openFuton
 {
-  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-  NSString *homePage = [info objectForKey:@"HomePage"];
+    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+    NSString *homePage = [info objectForKey:@"HomePage"];
     NSURL *url=[NSURL URLWithString:homePage];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 -(IBAction)browse:(id)sender
 {
-  [self openFuton];
+    [self openFuton];
 }
 
 -(IBAction)setLaunchPref:(id)sender {
-
+    
     NSCellStateValue stateVal = [sender state];
     stateVal = (stateVal == NSOnState) ? NSOffState : NSOnState;
-
+    
     NSLog(@"Setting launch pref to %s", stateVal == NSOnState ? "on" : "off");
-
+    
     [[NSUserDefaults standardUserDefaults]
      setBool:(stateVal == NSOnState)
      forKey:@"browseAtStart"];
-
+    
     [launchBrowserItem setState:([[NSUserDefaults standardUserDefaults]
                                   boolForKey:@"browseAtStart"] ? NSOnState : NSOffState)];
-
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -357,10 +357,10 @@
 
 -(IBAction)showTechSupport:(id)sender {
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-  NSString *homePage = [info objectForKey:@"SupportPage"];
+    NSString *homePage = [info objectForKey:@"SupportPage"];
     NSURL *url=[NSURL URLWithString:homePage];
     [[NSWorkspace sharedWorkspace] openURL:url];
-
+    
 }
 
 -(IBAction)showLogs:(id)sender {
@@ -369,7 +369,7 @@
     NSURL *logsURL = [[URLs lastObject] URLByAppendingPathComponent:@"Logs"];
     NSString *logsPath = [logsURL path];
     NSString *logsFile = [logsPath stringByAppendingString:@"/CouchDB2.log"];
-
+    
     [[NSWorkspace sharedWorkspace] openFile:logsFile withApplication: @"Console"];
 }
 
