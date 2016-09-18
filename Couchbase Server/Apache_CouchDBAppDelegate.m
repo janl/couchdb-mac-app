@@ -4,6 +4,7 @@
  */
 #import "Apache_CouchDBAppDelegate.h"
 #import "iniparser.h"
+#include <sys/sysctl.h>
 
 @implementation CouchDBAppDelegate
 
@@ -39,7 +40,7 @@
                                                                                    length:(NSUInteger)strlen((char*)path)];
         }
     }
-    confFile = [confFile stringByAppendingPathComponent:@"couchdb-server.ini"];
+    confFile = [confFile stringByAppendingPathComponent:@"couchdb2-local.ini"];
     return confFile;
 }
 
@@ -178,15 +179,17 @@
     }
     NSString *uriFile = [runDir stringByAppendingString:@"/couch.uri"];
     dictionary_set(iniDict, "couchdb:uri_file", [uriFile UTF8String]);
-    
-    dictionary_set(iniDict, "query_servers", NULL);
-    dictionary_set(iniDict, "query_servers:javascript", "bin/couchjs share/couchdb/server/main.js");
-    dictionary_set(iniDict, "query_servers:coffeescript", "bin/couchjs share/couchdb/server/main-coffee.js");
-    
-    
-    dictionary_set(iniDict, "product", NULL);
 
-    
+    dictionary_set(iniDict, "cluster", NULL);
+    dictionary_set(iniDict, "cluster:n", "1"); // store data only once
+    dictionary_set(iniDict, "cluster:q", "2"); // number of shards, hope for dual core
+
+    NSString *logPath = [NSHomeDirectory() stringByAppendingString:@"/Library/Logs/CouchDB2.log"];
+    const char *logCPath = [logPath cStringUsingEncoding:NSUTF8StringEncoding];
+    dictionary_set(iniDict, "log", NULL);
+    dictionary_set(iniDict, "log:writer", "file");
+    dictionary_set(iniDict, "log:file", logCPath);
+
     FILE *f = fopen([[self finalConfigPath] UTF8String], "w");
     if (f) {
         iniparser_dump_ini(iniDict, f);
@@ -213,22 +216,20 @@
     [launchPath appendString:@"/couchdbx-core"];
     [task setCurrentDirectoryPath:launchPath];
 
-// TODO: externally supplied ini files can’t have spaces in their paths
-//    (ERL_FLAGS="-couch_ini /path/to/default.ini /path/to/local.ini"
-//    NSString *iniPath = [launchPath stringByAppendingString:@"/etc"];
-//    NSString *iniPathDefault = [iniPath stringByAppendingString:@"/default.ini"];
-//    NSString *iniPathLocal = [iniPath stringByAppendingString:@"/local.ini"];
-//    NSString *iniPathLocal = @"/tmp/x.ini";
-//
-//    NSString *iniString = [[[@"-couch_ini "  stringByAppendingString:iniPathDefault]
-//                                             stringByAppendingString:@" "]
-//                                             stringByAppendingString:iniPathLocal];
+    NSString *iniPath = [[launchPath stringByAppendingString:@"/etc"]
+                                     stringByReplacingOccurrencesOfString:@" " withString:@"\\ "];
+    NSString *iniPathDefault = [iniPath stringByAppendingString:@"/default.ini"];
+    NSString *iniPathLocal = [self finalConfigPath];
+
+    NSString *iniString = [[[@"-couch_ini " stringByAppendingString:iniPathDefault]
+                                            stringByAppendingString:@" "]
+                                            stringByAppendingString:iniPathLocal];
     
     
     NSDictionary *env = [NSDictionary dictionaryWithObjectsAndKeys:
                          @"./bin:/bin:/usr/bin", @"PATH",
                          NSHomeDirectory(), @"HOME",
-//                         iniString, @"ERL_FLAGS",
+                         iniString, @"ERL_FLAGS",
                          nil, nil];
     [task setEnvironment:env];
     
