@@ -149,11 +149,11 @@
         // remove old file, if any
         [[NSFileManager defaultManager] removeItemAtPath: [self finalConfigPath] error: NULL];
         
-        // create sym link to local.ini
-        NSString *localIni = [confDir stringByAppendingString:@"/local.ini"];
-        if ([[NSFileManager defaultManager] createFileAtPath:localIni contents:nil attributes:nil]) {
-            [[NSFileManager defaultManager] createSymbolicLinkAtPath: [self finalConfigPath] withDestinationPath: localIni error: NULL];
-        }
+//        // create sym link to local.ini
+//        NSString *localIni = [confDir stringByAppendingString:@"/local.ini"];
+//        if ([[NSFileManager defaultManager] createFileAtPath:localIni contents:nil attributes:nil]) {
+//            [[NSFileManager defaultManager] createSymbolicLinkAtPath: [self finalConfigPath] withDestinationPath: localIni error: NULL];
+//        }
     }
     
     dictionary* iniDict = iniparser_load([[self finalConfigPath] UTF8String]);
