@@ -17,7 +17,7 @@
 				DAE21579133DB9C8006D63D2 /* PBXTargetDependency */,
 			);
 			name = "Apache CouchDB Zip";
-			productName = "Couchbase Server Zip";
+			productName = "CouchDB Server Zip";
 		};
 /* End PBXAggregateTarget section */
 
@@ -32,33 +32,20 @@
 		DA1AD342133DA58D00E6A9E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA1AD340133DA58D00E6A9E1 /* InfoPlist.strings */; };
 		DA1AD345133DA58D00E6A9E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1AD344133DA58D00E6A9E1 /* main.m */; };
 		DA1AD34B133DA58D00E6A9E1 /* Apache_CouchDBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1AD34A133DA58D00E6A9E1 /* Apache_CouchDBAppDelegate.m */; };
-		DA1AD355133DA58D00E6A9E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */; };
-		DA1AD35D133DA58D00E6A9E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA1AD35B133DA58D00E6A9E1 /* InfoPlist.strings */; };
-		DA1AD360133DA58D00E6A9E1 /* Apache_CouchDBTests.h in Resources */ = {isa = PBXBuildFile; fileRef = DA1AD35F133DA58D00E6A9E1 /* Apache_CouchDBTests.h */; };
-		DA1AD362133DA58D00E6A9E1 /* Apache_CouchDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1AD361133DA58D00E6A9E1 /* Apache_CouchDBTests.m */; };
 		DAADFB01133DA61700B282D6 /* Importer.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF7133DA61700B282D6 /* Importer.nib */; };
 		DAADFB04133DA61700B282D6 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFA133DA61700B282D6 /* Credits.html */; };
 		DAADFB05133DA61700B282D6 /* ensure_full_commit.sh in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */; };
 		DAADFB0A133DA61700B282D6 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFB00133DA61700B282D6 /* MainMenu.nib */; };
 		DAADFB13133DA68B00B282D6 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */; };
-		DAADFB14133DA68B00B282D6 /* ImportableDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */; };
-		DAADFB15133DA68B00B282D6 /* ImportController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB10133DA68B00B282D6 /* ImportController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DA1AD356133DA58D00E6A9E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA1AD32A133DA58D00E6A9E1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DA1AD332133DA58D00E6A9E1;
-			remoteInfo = "Couchbase Server";
-		};
 		DAE21578133DB9C8006D63D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DA1AD32A133DA58D00E6A9E1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DA1AD332133DA58D00E6A9E1;
-			remoteInfo = "Couchbase Server";
+			remoteInfo = "CouchDB Server";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -97,22 +84,12 @@
 		DA1AD344133DA58D00E6A9E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA1AD349133DA58D00E6A9E1 /* Apache_CouchDBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Apache_CouchDBAppDelegate.h; sourceTree = "<group>"; };
 		DA1AD34A133DA58D00E6A9E1 /* Apache_CouchDBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Apache_CouchDBAppDelegate.m; sourceTree = "<group>"; };
-		DA1AD354133DA58D00E6A9E1 /* Apache CouchDBTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Apache CouchDBTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA1AD35A133DA58D00E6A9E1 /* Apache CouchDBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Apache CouchDBTests-Info.plist"; sourceTree = "<group>"; };
-		DA1AD35C133DA58D00E6A9E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DA1AD35E133DA58D00E6A9E1 /* Apache CouchDBTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Apache CouchDBTests-Prefix.pch"; sourceTree = "<group>"; };
-		DA1AD35F133DA58D00E6A9E1 /* Apache_CouchDBTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Apache_CouchDBTests.h; sourceTree = "<group>"; };
-		DA1AD361133DA58D00E6A9E1 /* Apache_CouchDBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Apache_CouchDBTests.m; sourceTree = "<group>"; };
 		DAADFAF7133DA61700B282D6 /* Importer.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = Importer.nib; sourceTree = "<group>"; };
 		DAADFAFA133DA61700B282D6 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ensure_full_commit.sh; sourceTree = "<group>"; };
 		DAADFB00133DA61700B282D6 /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = MainMenu.nib; sourceTree = "<group>"; };
 		DAADFB0B133DA68B00B282D6 /* LoginItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemManager.h; sourceTree = "<group>"; };
 		DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemManager.m; sourceTree = "<group>"; };
-		DAADFB0D133DA68B00B282D6 /* ImportableDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportableDatabase.h; sourceTree = "<group>"; };
-		DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportableDatabase.m; sourceTree = "<group>"; };
-		DAADFB0F133DA68B00B282D6 /* ImportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportController.h; sourceTree = "<group>"; };
-		DAADFB10133DA68B00B282D6 /* ImportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,14 +101,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA1AD350133DA58D00E6A9E1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DA1AD355133DA58D00E6A9E1 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -140,7 +109,6 @@
 			children = (
 				3DE5105819B375F500CDA592 /* couchdbx-core */,
 				DA1AD33D133DA58D00E6A9E1 /* CouchDB Server */,
-				DA1AD358133DA58D00E6A9E1 /* CouchDB ServerTests */,
 				DA1AD336133DA58D00E6A9E1 /* Frameworks */,
 				DA1AD334133DA58D00E6A9E1 /* Products */,
 			);
@@ -150,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				DA1AD333133DA58D00E6A9E1 /* Apache CouchDB.app */,
-				DA1AD354133DA58D00E6A9E1 /* Apache CouchDBTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,16 +147,11 @@
 				45041425158361AC0040F6FF /* CouchDB Server.entitlements */,
 				DAADFB0B133DA68B00B282D6 /* LoginItemManager.h */,
 				DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */,
-				DAADFB0D133DA68B00B282D6 /* ImportableDatabase.h */,
-				DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */,
-				DAADFB0F133DA68B00B282D6 /* ImportController.h */,
-				DAADFB10133DA68B00B282D6 /* ImportController.m */,
 				DA1AD349133DA58D00E6A9E1 /* Apache_CouchDBAppDelegate.h */,
 				DA1AD34A133DA58D00E6A9E1 /* Apache_CouchDBAppDelegate.m */,
 				DA1AD33E133DA58D00E6A9E1 /* Supporting Files */,
 			);
-			name = "CouchDB Server";
-			path = "Couchbase Server";
+			path = "CouchDB Server";
 			sourceTree = "<group>";
 		};
 		DA1AD33E133DA58D00E6A9E1 /* Supporting Files */ = {
@@ -214,27 +176,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DA1AD358133DA58D00E6A9E1 /* CouchDB ServerTests */ = {
-			isa = PBXGroup;
-			children = (
-				DA1AD35F133DA58D00E6A9E1 /* Apache_CouchDBTests.h */,
-				DA1AD361133DA58D00E6A9E1 /* Apache_CouchDBTests.m */,
-				DA1AD359133DA58D00E6A9E1 /* Supporting Files */,
-			);
-			name = "CouchDB ServerTests";
-			path = "Couchbase ServerTests";
-			sourceTree = "<group>";
-		};
-		DA1AD359133DA58D00E6A9E1 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DA1AD35A133DA58D00E6A9E1 /* Apache CouchDBTests-Info.plist */,
-				DA1AD35B133DA58D00E6A9E1 /* InfoPlist.strings */,
-				DA1AD35E133DA58D00E6A9E1 /* Apache CouchDBTests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -252,28 +193,9 @@
 			dependencies = (
 			);
 			name = "Apache CouchDB";
-			productName = "Couchbase Server";
+			productName = "CouchDB Server";
 			productReference = DA1AD333133DA58D00E6A9E1 /* Apache CouchDB.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DA1AD353133DA58D00E6A9E1 /* Apache CouchDB Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DA1AD368133DA58D00E6A9E1 /* Build configuration list for PBXNativeTarget "Apache CouchDB Tests" */;
-			buildPhases = (
-				DA1AD34F133DA58D00E6A9E1 /* Sources */,
-				DA1AD350133DA58D00E6A9E1 /* Frameworks */,
-				DA1AD351133DA58D00E6A9E1 /* Resources */,
-				DA1AD352133DA58D00E6A9E1 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DA1AD357133DA58D00E6A9E1 /* PBXTargetDependency */,
-			);
-			name = "Apache CouchDB Tests";
-			productName = "Couchbase ServerTests";
-			productReference = DA1AD354133DA58D00E6A9E1 /* Apache CouchDBTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -282,7 +204,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = NorthScale;
+				ORGANIZATIONNAME = Apache;
 			};
 			buildConfigurationList = DA1AD32D133DA58D00E6A9E1 /* Build configuration list for PBXProject "Apache CouchDB" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -298,7 +220,6 @@
 			targets = (
 				DAE21573133DB9C2006D63D2 /* Apache CouchDB Zip */,
 				DA1AD332133DA58D00E6A9E1 /* Apache CouchDB */,
-				DA1AD353133DA58D00E6A9E1 /* Apache CouchDB Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -319,31 +240,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA1AD351133DA58D00E6A9E1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DA1AD35D133DA58D00E6A9E1 /* InfoPlist.strings in Resources */,
-				DA1AD360133DA58D00E6A9E1 /* Apache_CouchDBTests.h in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DA1AD352133DA58D00E6A9E1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		DAE2157A133DBA20006D63D2 /* Zip it up */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -368,29 +267,14 @@
 				DA1AD345133DA58D00E6A9E1 /* main.m in Sources */,
 				DA1AD34B133DA58D00E6A9E1 /* Apache_CouchDBAppDelegate.m in Sources */,
 				DAADFB13133DA68B00B282D6 /* LoginItemManager.m in Sources */,
-				DAADFB14133DA68B00B282D6 /* ImportableDatabase.m in Sources */,
-				DAADFB15133DA68B00B282D6 /* ImportController.m in Sources */,
 				DA0E692413DD364400CDAC6D /* dictionary.c in Sources */,
 				DA0E692513DD364400CDAC6D /* iniparser.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA1AD34F133DA58D00E6A9E1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DA1AD362133DA58D00E6A9E1 /* Apache_CouchDBTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DA1AD357133DA58D00E6A9E1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DA1AD332133DA58D00E6A9E1 /* Apache CouchDB */;
-			targetProxy = DA1AD356133DA58D00E6A9E1 /* PBXContainerItemProxy */;
-		};
 		DAE21579133DB9C8006D63D2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DA1AD332133DA58D00E6A9E1 /* Apache CouchDB */;
@@ -403,14 +287,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				DA1AD341133DA58D00E6A9E1 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		DA1AD35B133DA58D00E6A9E1 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DA1AD35C133DA58D00E6A9E1 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -487,8 +363,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Couchbase Server/Apache CouchDB-Prefix.pch";
-				INFOPLIST_FILE = "Couchbase Server/Apache CouchDB-Info.plist";
+				GCC_PREFIX_HEADER = "CouchDB Server/Apache CouchDB-Prefix.pch";
+				INFOPLIST_FILE = "CouchDB Server/Apache CouchDB-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.apache.couchdb;
 				PRODUCT_NAME = "Apache CouchDB";
 				WRAPPER_EXTENSION = app;
@@ -509,59 +385,11 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Couchbase Server/Apache CouchDB-Prefix.pch";
-				INFOPLIST_FILE = "Couchbase Server/Apache CouchDB-Info.plist";
+				GCC_PREFIX_HEADER = "CouchDB Server/Apache CouchDB-Prefix.pch";
+				INFOPLIST_FILE = "CouchDB Server/Apache CouchDB-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.apache.couchdb;
 				PRODUCT_NAME = "Apache CouchDB";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		DA1AD369133DA58D00E6A9E1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Couchbase Server.app/Contents/MacOS/Couchbase Server";
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Couchbase ServerTests/Apache CouchDBTests-Prefix.pch";
-				INFOPLIST_FILE = "Couchbase ServerTests/Apache CouchDBTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.couchbase.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "Apache CouchDBTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		DA1AD36A133DA58D00E6A9E1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Couchbase Server.app/Contents/MacOS/Couchbase Server";
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Couchbase ServerTests/Apache CouchDBTests-Prefix.pch";
-				INFOPLIST_FILE = "Couchbase ServerTests/Apache CouchDBTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.couchbase.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "Apache CouchDBTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -598,15 +426,6 @@
 			buildConfigurations = (
 				DA1AD366133DA58D00E6A9E1 /* Debug */,
 				DA1AD367133DA58D00E6A9E1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DA1AD368133DA58D00E6A9E1 /* Build configuration list for PBXNativeTarget "Apache CouchDB Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DA1AD369133DA58D00E6A9E1 /* Debug */,
-				DA1AD36A133DA58D00E6A9E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
