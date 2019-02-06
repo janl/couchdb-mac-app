@@ -482,7 +482,6 @@ static line_status iniparser_line(
            ||  sscanf (line, "%[^=] = %[^;#]",     key, value) == 2) {
         /* Usual key=value, with or without comments */
         strcpy(key, strstrip(key));
-        strcpy(key, key);
         strcpy(value, strstrip(value));
         /*
          * sscanf cannot handle '' or "" as empty values
@@ -501,7 +500,6 @@ static line_status iniparser_line(
          * key=#
          */
         strcpy(key, strstrip(key));
-        strcpy(key, key);
         value[0]=0 ;
         sta = LINE_VALUE ;
     } else {
