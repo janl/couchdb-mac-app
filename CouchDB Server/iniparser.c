@@ -273,7 +273,7 @@ char * iniparser_getstring(dictionary * d, char * key, char * def)
     if (d==NULL || key==NULL)
         return def ;
 
-    lc_key = strlwc(key);
+    lc_key = key;
     sval = dictionary_get(d, lc_key, def);
     return sval ;
 }
@@ -424,7 +424,7 @@ int iniparser_find_entry(
 /*--------------------------------------------------------------------------*/
 int iniparser_set(dictionary * ini, char * entry, char * val)
 {
-    return dictionary_set(ini, strlwc(entry), val) ;
+    return dictionary_set(ini, entry, val) ;
 }
 
 /*-------------------------------------------------------------------------*/
@@ -439,7 +439,7 @@ int iniparser_set(dictionary * ini, char * entry, char * val)
 /*--------------------------------------------------------------------------*/
 void iniparser_unset(dictionary * ini, char * entry)
 {
-    dictionary_unset(ini, strlwc(entry));
+    dictionary_unset(ini, entry);
 }
 
 /*-------------------------------------------------------------------------*/
@@ -476,14 +476,13 @@ static line_status iniparser_line(
         /* Section name */
         sscanf(line, "[%[^]]", section);
         strcpy(section, strstrip(section));
-        strcpy(section, strlwc(section));
         sta = LINE_SECTION ;
     } else if (sscanf (line, "%[^=] = \"%[^\"]\"", key, value) == 2
            ||  sscanf (line, "%[^=] = '%[^\']'",   key, value) == 2
            ||  sscanf (line, "%[^=] = %[^;#]",     key, value) == 2) {
         /* Usual key=value, with or without comments */
         strcpy(key, strstrip(key));
-        strcpy(key, strlwc(key));
+        strcpy(key, key);
         strcpy(value, strstrip(value));
         /*
          * sscanf cannot handle '' or "" as empty values
@@ -502,7 +501,7 @@ static line_status iniparser_line(
          * key=#
          */
         strcpy(key, strstrip(key));
-        strcpy(key, strlwc(key));
+        strcpy(key, key);
         value[0]=0 ;
         sta = LINE_VALUE ;
     } else {
