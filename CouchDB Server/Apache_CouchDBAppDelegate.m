@@ -126,6 +126,42 @@
     return [self applicationSupportFolder:@"CouchDB2"];
 }
 
+-(NSString *)showPasswordModal
+{
+    enum {
+       NSAlertFirstButtonReturn   = 1000,
+       NSAlertSecondButtonReturn   = 1001,
+    };
+    NSLog(@"no admins!");
+    NSTextView *accessory = [[NSTextView alloc] initWithFrame:NSMakeRect(0,0,200,15)];
+    NSFont *font = [NSFont systemFontOfSize:[NSFont systemFontSize]];
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
+    [accessory insertText:[[NSAttributedString alloc] initWithString:@""]];
+    [accessory setEditable:YES];
+
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"No CouchDB Admin password found.";
+
+    [alert addButtonWithTitle:@"Set Password"];
+    [alert addButtonWithTitle:@"Cancel and Quit CouchDB"];
+    [alert setInformativeText:@"Please enter a password for the user `admin`."];
+    alert.accessoryView = accessory;
+    NSModalResponse alertResponse = [alert runModal];
+    [alert release];
+    if (alertResponse == NSAlertFirstButtonReturn) {
+         // set password, cant be empty
+        NSMutableString *newPW = [[accessory textStorage] mutableString];
+        NSLog(newPW);
+        if (newPW.length == 0) {
+            return [self showPasswordModal];
+        } else {
+            return newPW;
+        }
+    } else {
+        // quit
+        [self stop:self];
+    }
+}
 -(void)setInitParams
 {
     // determine data dir
@@ -160,6 +196,14 @@
     if (iniDict == NULL) {
         iniDict = dictionary_new(0);
         assert(iniDict);
+    }
+
+    int hasAdmins = iniparser_secempty(iniDict, "admins");
+    if (hasAdmins == 0) {
+        NSString * newPW = [self showPasswordModal];
+        NSLog(@"Seetting pw to %@", newPW);
+        dictionary_set(iniDict, "admins", NULL);
+        dictionary_set(iniDict, "admins:admin", [newPW UTF8String]);
     }
     
     dictionary_set(iniDict, "couchdb", NULL);
@@ -203,6 +247,7 @@
 
 -(void)launchCouchDB
 {
+    NSLog(@"letsgo");
     [self setInitParams];
     
     in = [[NSPipe alloc] init];

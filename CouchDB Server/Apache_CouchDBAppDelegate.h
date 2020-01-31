@@ -32,6 +32,7 @@
 -(void)taskTerminated:(NSNotification *)note;
 -(void)cleanup;
 -(NSString *)applicationSupportFolder;
+-(NSString *)showPasswordModal;
 
 -(void)updateAddItemButtonState;
 

@@ -269,5 +269,6 @@ dictionary * iniparser_load(const char * ininame);
  */
 /*--------------------------------------------------------------------------*/
 void iniparser_freedict(dictionary * d);
+int iniparser_secempty(dictionary * d, char * sec);
 
 #endif

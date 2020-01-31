@@ -133,6 +133,40 @@ int iniparser_getnsec(dictionary * d)
     return nsec ;
 }
 
+int iniparser_secempty(dictionary * d, char * sec)
+{
+    int i ;
+    int foundsec = 0;
+
+    if (d==NULL || sec==NULL) return -1 ;
+
+    for (i=0 ; i<d->size ; i++) {
+    // loop until we find the section
+    // then loop unitl we have all children
+    // if none, return truw
+        if (d->key[i]==NULL) {
+            continue ;
+        }
+        char * s = d->key[i];
+        if (strchr(s, ':')==NULL) {
+            // we have a new section
+            if (strcmp(s, sec) == 0) {
+                // we found our sec
+                foundsec = 1;
+            } else {
+                foundsec = 0;
+            }
+        } else {
+            if (foundsec == 1) {
+                // we found our section and on next loop we found an entry
+                // so the section is not empty
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
 /*-------------------------------------------------------------------------*/
 /**
   @brief    Get name for section n in a dictionary.
