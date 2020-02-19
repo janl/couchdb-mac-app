@@ -151,7 +151,6 @@
     if (alertResponse == NSAlertFirstButtonReturn) {
          // set password, cant be empty
         NSMutableString *newPW = [[accessory textStorage] mutableString];
-        NSLog(newPW);
         if (newPW.length == 0) {
             return [self showPasswordModal];
         } else {
@@ -201,7 +200,6 @@
     int hasAdmins = iniparser_secempty(iniDict, "admins");
     if (hasAdmins == 0) {
         NSString * newPW = [self showPasswordModal];
-        NSLog(@"Seetting pw to %@", newPW);
         dictionary_set(iniDict, "admins", NULL);
         dictionary_set(iniDict, "admins:admin", [newPW UTF8String]);
     }
