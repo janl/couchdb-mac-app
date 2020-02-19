@@ -6,21 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		DAE21573133DB9C2006D63D2 /* Apache CouchDB Zip */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = DAE21576133DB9C3006D63D2 /* Build configuration list for PBXAggregateTarget "Apache CouchDB Zip" */;
-			buildPhases = (
-				DAE2157A133DBA20006D63D2 /* Zip it up */,
-			);
-			dependencies = (
-				DAE21579133DB9C8006D63D2 /* PBXTargetDependency */,
-			);
-			name = "Apache CouchDB Zip";
-			productName = "CouchDB Server Zip";
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		3DE5105919B375F500CDA592 /* couchdbx-core in Copy Core */ = {isa = PBXBuildFile; fileRef = 3DE5105819B375F500CDA592 /* couchdbx-core */; };
 		45759BA915681BA30003334D /* CouchDb-Status-bw.png in Resources */ = {isa = PBXBuildFile; fileRef = 45759BA8156818F20003334D /* CouchDb-Status-bw.png */; };
@@ -38,16 +23,6 @@
 		DAADFB0A133DA61700B282D6 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFB00133DA61700B282D6 /* MainMenu.nib */; };
 		DAADFB13133DA68B00B282D6 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DAE21578133DB9C8006D63D2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA1AD32A133DA58D00E6A9E1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DA1AD332133DA58D00E6A9E1;
-			remoteInfo = "CouchDB Server";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		3DE867AE19B37463003B011E /* Copy Core */ = {
@@ -225,7 +200,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DAE21573133DB9C2006D63D2 /* Apache CouchDB Zip */,
 				DA1AD332133DA58D00E6A9E1 /* Apache CouchDB */,
 			);
 		};
@@ -249,23 +223,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		DAE2157A133DBA20006D63D2 /* Zip it up */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Zip it up";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"$PROJECT_NAME.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\nZIPNAME=`echo \"$PROJECT_NAME\" | sed -e s/\\ /-/g`-$V.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ZIPNAME\"\n\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		DA1AD32F133DA58D00E6A9E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -280,14 +237,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DAE21579133DB9C8006D63D2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DA1AD332133DA58D00E6A9E1 /* Apache CouchDB */;
-			targetProxy = DAE21578133DB9C8006D63D2 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DA1AD340133DA58D00E6A9E1 /* InfoPlist.strings */ = {
@@ -436,24 +385,6 @@
 			};
 			name = Release;
 		};
-		DAE21574133DB9C2006D63D2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PRODUCT_NAME = "Apache CouchDB Zip";
-			};
-			name = Debug;
-		};
-		DAE21575133DB9C2006D63D2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PRODUCT_NAME = "Apache CouchDB Zip";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -471,15 +402,6 @@
 			buildConfigurations = (
 				DA1AD366133DA58D00E6A9E1 /* Debug */,
 				DA1AD367133DA58D00E6A9E1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DAE21576133DB9C3006D63D2 /* Build configuration list for PBXAggregateTarget "Apache CouchDB Zip" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DAE21574133DB9C2006D63D2 /* Debug */,
-				DAE21575133DB9C2006D63D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
