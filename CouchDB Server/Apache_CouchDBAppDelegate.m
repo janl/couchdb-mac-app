@@ -421,4 +421,10 @@
     [[NSWorkspace sharedWorkspace] openFile:logsFile withApplication: @"Console"];
 }
 
+-(IBAction)showConfig:(id)sender {
+    NSString *iniPathLocal = [self finalConfigPath];
+    NSArray *fileURLs = [NSArray arrayWithObjects:iniPathLocal, nil];
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:fileURLs];
+}
+
 @end
