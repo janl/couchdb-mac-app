@@ -127,6 +127,13 @@
     return [self applicationSupportFolder:@"CouchDB2"];
 }
 
+-(NSString *)vmArgsPath
+{
+    NSString *dataDir = [self applicationSupportFolder];
+    NSString *confDir = [dataDir stringByAppendingString:@"/etc/couchdb"];
+    return [confDir stringByAppendingString:@"/vm.args"];
+}
+
 -(NSString *)showPasswordModal
 {
     enum {
@@ -246,22 +253,22 @@
     // install vm.agrs
 
     // check for vm.args existence and copy if it doesn't exist
-      NSString *vmArgsPath = [confDir stringByAppendingString:@"/vm.args"];
-      bool doesVmArgsExist = [[NSFileManager defaultManager] fileExistsAtPath:vmArgsPath];
+      bool doesVmArgsExist = [[NSFileManager defaultManager] fileExistsAtPath:[self vmArgsPath]];
       if (!doesVmArgsExist) {
           NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"vm" ofType:@"args" inDirectory:@"couchdbx-core/etc"];
-          NSURL *sourceUrl = [NSURL URLWithString: resourcePath];
-          NSURL *destUrl = [NSURL URLWithString: vmArgsPath];
+          NSURL *sourceUrl = [NSURL fileURLWithPath: resourcePath isDirectory: NO];
+          NSURL *destUrl = [NSURL fileURLWithPath: [self vmArgsPath] isDirectory: NO];
           bool _ret = [[NSFileManager defaultManager] copyItemAtURL:sourceUrl toURL:destUrl error:nil];
           NSString *randomCookie = [NSUUID UUID].UUIDString;
 
           NSString *theCookieLine = [NSString stringWithFormat:@"\n-setcookie %@\n", randomCookie];
-          NSFileHandle *output = [NSFileHandle fileHandleForUpdatingAtPath:vmArgsPath];
+          NSFileHandle *output = [NSFileHandle fileHandleForUpdatingAtPath:[self vmArgsPath]];
           [output seekToEndOfFile];
           [output writeData:[theCookieLine dataUsingEncoding:NSUTF8StringEncoding]];
           [output closeFile];
     }
 }
+
 
 -(void)launchCouchDB
 {
@@ -293,6 +300,7 @@
                          @"./bin:/bin:/usr/bin", @"PATH",
                          NSHomeDirectory(), @"HOME",
                          iniString, @"ERL_FLAGS",
+                         [self vmArgsPath], @"COUCHDB_ARGS_FILE",
                          nil, nil];
     [task setEnvironment:env];
     
