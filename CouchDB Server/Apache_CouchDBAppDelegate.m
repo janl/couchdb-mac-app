@@ -242,6 +242,25 @@
     }
     
     iniparser_freedict(iniDict);
+
+    // install vm.agrs
+
+    // check for vm.args existence and copy if it doesn't exist
+      NSString *vmArgsPath = [confDir stringByAppendingString:@"/vm.args"];
+      bool doesVmArgsExist = [[NSFileManager defaultManager] fileExistsAtPath:vmArgsPath];
+      if (!doesVmArgsExist) {
+          NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"vm" ofType:@"args" inDirectory:@"couchdbx-core/etc"];
+          NSURL *sourceUrl = [NSURL URLWithString: resourcePath];
+          NSURL *destUrl = [NSURL URLWithString: vmArgsPath];
+          bool _ret = [[NSFileManager defaultManager] copyItemAtURL:sourceUrl toURL:destUrl error:nil];
+          NSString *randomCookie = [NSUUID UUID].UUIDString;
+
+          NSString *theCookieLine = [NSString stringWithFormat:@"\n-setcookie %@\n", randomCookie];
+          NSFileHandle *output = [NSFileHandle fileHandleForUpdatingAtPath:vmArgsPath];
+          [output seekToEndOfFile];
+          [output writeData:[theCookieLine dataUsingEncoding:NSUTF8StringEncoding]];
+          [output closeFile];
+    }
 }
 
 -(void)launchCouchDB
