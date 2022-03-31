@@ -261,7 +261,7 @@
           bool _ret = [[NSFileManager defaultManager] copyItemAtURL:sourceUrl toURL:destUrl error:nil];
           NSString *randomCookie = [NSUUID UUID].UUIDString;
 
-          NSString *theCookieLine = [NSString stringWithFormat:@"\n-setcookie %@\n", randomCookie];
+          NSString *theCookieLine = [NSString stringWithFormat:@"\n-setcookie %@\n-kernel inet_dist_use_interface '{127,0,0,1}'\n", randomCookie];
           NSFileHandle *output = [NSFileHandle fileHandleForUpdatingAtPath:[self vmArgsPath]];
           [output seekToEndOfFile];
           [output writeData:[theCookieLine dataUsingEncoding:NSUTF8StringEncoding]];
