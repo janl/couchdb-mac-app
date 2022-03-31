@@ -182,7 +182,7 @@
 				ORGANIZATIONNAME = Apache;
 				TargetAttributes = {
 					DA1AD332133DA58D00E6A9E1 = {
-						DevelopmentTeam = 5FZCA65884;
+						DevelopmentTeam = 7NRGW6679T;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -337,9 +337,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 5FZCA65884;
-				ENABLE_HARDENED_RUNTIME = YES;
-				DEVELOPMENT_TEAM = 7J8R7V2U23;
+				DEVELOPMENT_TEAM = 7NRGW6679T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -370,7 +368,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 7J8R7V2U23;
+				DEVELOPMENT_TEAM = 7NRGW6679T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
