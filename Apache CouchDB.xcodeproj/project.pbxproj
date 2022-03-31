@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DE5105919B375F500CDA592 /* couchdbx-core in Copy Core */ = {isa = PBXBuildFile; fileRef = 3DE5105819B375F500CDA592 /* couchdbx-core */; };
+		3DE5105919B375F500CDA592 /* couchdbx-core in Copy Core */ = {isa = PBXBuildFile; fileRef = 3DE5105819B375F500CDA592 /* couchdbx-core */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		45759BA915681BA30003334D /* CouchDb-Status-bw.png in Resources */ = {isa = PBXBuildFile; fileRef = 45759BA8156818F20003334D /* CouchDb-Status-bw.png */; };
 		45759BAA15681BA30003334D /* CouchDb-Status.png in Resources */ = {isa = PBXBuildFile; fileRef = 45759BA7156818370003334D /* CouchDb-Status.png */; };
 		45759BAB15681BA30003334D /* CouchDb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 45759BA6156817930003334D /* CouchDb.icns */; };
@@ -285,7 +285,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -322,7 +322,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -339,6 +339,8 @@
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 5FZCA65884;
 				ENABLE_HARDENED_RUNTIME = YES;
+				DEVELOPMENT_TEAM = 7J8R7V2U23;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -348,6 +350,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CouchDB Server/Apache CouchDB-Prefix.pch";
 				INFOPLIST_FILE = "CouchDB Server/Apache CouchDB-Info.plist";
+				OTHER_CODE_SIGN_FLAGS = "--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime";
 				PRODUCT_BUNDLE_IDENTIFIER = org.apache.couchdb;
 				PRODUCT_NAME = "Apache CouchDB";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -367,7 +370,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 5FZCA65884;
+				DEVELOPMENT_TEAM = 7J8R7V2U23;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -377,6 +380,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CouchDB Server/Apache CouchDB-Prefix.pch";
 				INFOPLIST_FILE = "CouchDB Server/Apache CouchDB-Info.plist";
+				OTHER_CODE_SIGN_FLAGS = "--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime";
 				PRODUCT_BUNDLE_IDENTIFIER = org.apache.couchdb;
 				PRODUCT_NAME = "Apache CouchDB";
 				PROVISIONING_PROFILE_SPECIFIER = "";
