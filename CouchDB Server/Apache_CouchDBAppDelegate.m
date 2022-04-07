@@ -301,7 +301,7 @@
                          NSHomeDirectory(), @"HOME",
                          iniString, @"ERL_FLAGS",
                          [self vmArgsPath], @"COUCHDB_ARGS_FILE",
-                         "127.0.0.1", "ERL_EPMD_ADDRESS",
+                         @"127.0.0.1,::1", @"ERL_EPMD_ADDRESS",
                          nil, nil];
     [task setEnvironment:env];
     
