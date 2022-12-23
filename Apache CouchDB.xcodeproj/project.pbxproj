@@ -182,7 +182,7 @@
 				ORGANIZATIONNAME = Apache;
 				TargetAttributes = {
 					DA1AD332133DA58D00E6A9E1 = {
-						DevelopmentTeam = 7NRGW6679T;
+						DevelopmentTeam = 5FZCA65884;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -331,13 +331,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = "CouchDB Server.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 7NRGW6679T;
+				DEVELOPMENT_TEAM = 5FZCA65884;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -348,11 +349,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CouchDB Server/Apache CouchDB-Prefix.pch";
 				INFOPLIST_FILE = "CouchDB Server/Apache CouchDB-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				OTHER_CODE_SIGN_FLAGS = "--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime";
 				PRODUCT_BUNDLE_IDENTIFIER = org.apache.couchdb;
 				PRODUCT_NAME = "Apache CouchDB";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -361,6 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = "CouchDB Server.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -368,7 +371,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 7NRGW6679T;
+				DEVELOPMENT_TEAM = 5FZCA65884;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -378,11 +381,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CouchDB Server/Apache CouchDB-Prefix.pch";
 				INFOPLIST_FILE = "CouchDB Server/Apache CouchDB-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime\n--options=runtime";
 				PRODUCT_BUNDLE_IDENTIFIER = org.apache.couchdb;
 				PRODUCT_NAME = "Apache CouchDB";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
