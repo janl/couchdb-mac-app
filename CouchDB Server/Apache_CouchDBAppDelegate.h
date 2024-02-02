@@ -42,6 +42,6 @@
 -(IBAction)showAboutPanel:(id)sender;
 -(IBAction)showLogs:(id)sender;
 -(IBAction)showTechSupport:(id)sender;
-
+-(IBAction)showConfig:(id)sender;
 
 @end
