@@ -249,6 +249,10 @@
     }
     
     iniparser_freedict(iniDict);
+    NSDictionary *attributes = @{
+        NSFilePosixPermissions: [NSNumber numberWithShort:0600]
+    };
+    [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[self finalConfigPath] error:nil];
 
     // install vm.agrs
 
@@ -267,6 +271,10 @@
           [output writeData:[theCookieLine dataUsingEncoding:NSUTF8StringEncoding]];
           [output closeFile];
     }
+    NSDictionary *attributes = @{
+        NSFilePosixPermissions: [NSNumber numberWithShort:0600]
+    };
+    [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[self vmArgsPath] error:nil];
 }
 
 
